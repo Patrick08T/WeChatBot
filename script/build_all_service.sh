@@ -21,7 +21,7 @@ for ((i = 0; i < ${#service_source_root[*]}; i++)); do
   echo "${begin_path}"
   service_path=${service_source_root[$i]}
   echo "${service_path}"
-  cd $service_path
+  cd ../src/bot
   make install
   if [ $? -ne 0 ]; then
         echo -e "${RED_PREFIX}${service_names[$i]} build failed ${COLOR_SUFFIX}\n"

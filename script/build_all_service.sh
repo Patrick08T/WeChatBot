@@ -18,7 +18,9 @@ begin_path=$PWD
 
 for ((i = 0; i < ${#service_source_root[*]}; i++)); do
   cd $begin_path
+  echo "${begin_path}"
   service_path=${service_source_root[$i]}
+  echo "${service_path}"
   cd $service_path
   make install
   if [ $? -ne 0 ]; then

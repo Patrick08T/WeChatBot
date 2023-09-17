@@ -1,8 +1,8 @@
 package send_weather
 
 import (
-	"WeChatBot/src/sdk/weather"
-	"WeChatBot/src/utils/tick"
+	"bot/src/sdk/weather"
+	"bot/src/utils/tick"
 	"github.com/eatmoreapple/openwechat"
 )
 

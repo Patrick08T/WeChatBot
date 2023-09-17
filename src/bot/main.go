@@ -1,7 +1,7 @@
 package main
 
 import (
-	"WeChatBot/src/bot/send_weather"
+	"bot/src/bot/send_weather"
 	"fmt"
 	"github.com/eatmoreapple/openwechat"
 )

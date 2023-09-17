@@ -1,8 +1,8 @@
 package weather
 
 import (
-	"WeChatBot/src/utils/http"
-	"WeChatBot/src/utils/log"
+	"bot/src/utils/http"
+	"bot/src/utils/log"
 	"encoding/json"
 	"fmt"
 )

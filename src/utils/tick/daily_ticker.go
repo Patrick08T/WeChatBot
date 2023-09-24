@@ -5,7 +5,11 @@ import (
 	"time"
 )
 
-func DailyTicker(hour, minute, second int, call func()) {
+func NineAMTasks(tasks ...func()) {
+	DailyTicker(9, 0, 0, tasks...)
+}
+
+func DailyTicker(hour, minute, second int, call ...func()) {
 	scheduledTime := time.Date(time.Now().Year(), time.Now().Month(), time.Now().Day(), hour, minute, second, 0, time.Local)
 	durationUntilNextRun := scheduledTime.Sub(time.Now())
 	if durationUntilNextRun < 0 {
@@ -22,7 +26,9 @@ func DailyTicker(hour, minute, second int, call func()) {
 			fmt.Println("执行每日定时任务...")
 
 			// 在这里执行您的任务逻辑
-			call()
+			for _, c := range call {
+				c()
+			}
 
 			// 计算下一次执行任务的时间
 			scheduledTime = scheduledTime.Add(24 * time.Hour)

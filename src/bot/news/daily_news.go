@@ -17,3 +17,13 @@ func DailyNewsToFriend(self *openwechat.Self, friends openwechat.Friends, name s
 		}
 	})
 }
+func DailyNewsToFriends(self *openwechat.Self, friends openwechat.Friends) {
+	tick.DailyTicker(9, 0, 0, func() {
+		resp := news.GetNews()
+		if resp != nil {
+			for _, friend := range friends {
+				self.SendTextToFriend(friend, resp.ToString())
+			}
+		}
+	})
+}

@@ -40,6 +40,7 @@ func main() {
 	fmt.Println(groups, err)
 
 	send_weather.DailyWeatherToFriend(self, friends, "Patrick")
+	//news.DailyNewsToFriend(self, friends, "Patrick")
 	// 阻塞主goroutine, 直到发生异常或者用户主动退出
 	bot.Block()
 }

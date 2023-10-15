@@ -5,8 +5,8 @@ import (
 	"time"
 )
 
-func NineAMTasks(tasks ...func()) {
-	DailyTicker(9, 0, 0, tasks...)
+func Eight30Tasks(tasks ...func()) {
+	DailyTicker(8, 30, 0, tasks...)
 }
 
 func DailyTicker(hour, minute, second int, call ...func()) {

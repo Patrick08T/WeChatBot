@@ -8,7 +8,7 @@ import (
 
 func DailyWeatherToFriend(self *openwechat.Self, friends openwechat.Friends, name string) {
 	fs := friends.Search(1, func(friend *openwechat.Friend) bool { return friend.NickName == name })
-	tick.NineAMTasks(func() {
+	tick.Eight30Tasks(func() {
 		resp := weather.GetTodayWeather()
 		if resp != nil {
 			for _, friend := range fs {
@@ -17,13 +17,13 @@ func DailyWeatherToFriend(self *openwechat.Self, friends openwechat.Friends, nam
 		}
 	})
 }
-func DailyWeatherToFriends(self *openwechat.Self, friends openwechat.Friends) {
-	tick.NineAMTasks(func() {
+func DailyWeatherToFriends(self *openwechat.Self, friends openwechat.Friends) func() {
+	return func() {
 		resp := weather.GetTodayWeather()
 		if resp != nil {
 			for _, friend := range friends {
 				self.SendTextToFriend(friend, resp.ToString())
 			}
 		}
-	})
+	}
 }

@@ -3,6 +3,7 @@ package main
 import (
 	"bot/src/bot/news"
 	"bot/src/bot/send_weather"
+	"bot/src/utils/tick"
 	"fmt"
 	"github.com/eatmoreapple/openwechat"
 )
@@ -12,9 +13,9 @@ func main() {
 
 	// 注册消息处理函数
 	bot.MessageHandler = func(msg *openwechat.Message) {
-		if msg.IsText() && msg.Content == "ping" {
-			msg.ReplyText("pong")
-		}
+		//if msg.IsText() && msg.Content == "ping" {
+		//	msg.ReplyText("pong")
+		//}
 	}
 	// 注册登陆二维码回调
 	bot.UUIDCallback = openwechat.PrintlnQrcodeUrl
@@ -40,8 +41,10 @@ func main() {
 	groups, err := self.Groups()
 	fmt.Println(groups, err)
 
-	send_weather.DailyWeatherToFriends(self, friends)
-	news.DailyNewsToFriends(self, friends)
+	tick.Eight30Tasks(
+		send_weather.DailyWeatherToFriends(self, friends),
+		news.DailyNewsToFriends(self, friends))
+
 	// 阻塞主goroutine, 直到发生异常或者用户主动退出
 	bot.Block()
 }
